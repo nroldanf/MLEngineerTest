@@ -10,7 +10,7 @@ These are the steps to run this project:
 
 ### Build and image or pull it from Ducker Hub
 
-You can pull the image nroldanf/loka_test from ducker hub or build and image from the __Dockerfile in this repo.
+You can pull the image nroldanf/loka_test from ducker hub or build and image from the __Dockerfile__ in [this repo](https://hub.docker.com/r/nroldanf/loka_test).
 
 ### Run the docker container
 
