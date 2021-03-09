@@ -4,9 +4,9 @@ Code from the entry test for a Machine Learning Engineer Position.
 
 __NOTE__: To run the project download first the data.csv file with all the data and move to your working directory, in this case, the current.
 
-## Steps to run the project
+## Steps to run the project (EDA and training)
 
-These are the steps to run this project:
+Once this repo has been cloned, change directory to __research__ where the EDA files are.
 
 ### Build and image or pull it from Ducker Hub
 

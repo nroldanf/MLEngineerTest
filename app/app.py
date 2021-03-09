@@ -1,22 +1,24 @@
+'''
+Main file for the routes and some logic of the API
+'''
 from typing import Optional
 from enum import Enum
+from sklearn.feature_selection import chi2
+from feature_engine.selection import VarianceThreshold
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
 
 app = FastAPI()
-
 
 class Item(BaseModel):
     name: str
     price: float
     is_offer: Optional[bool] = None
 
-
 class ModelName(str, Enum):
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"
-
 
 @app.get("/")
 def read_root():
@@ -29,7 +31,6 @@ def read_item(item_id: int, q: Optional[str] = None):
 @app.put("/items/{item_id}")
 def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id, "price": item.price, "is_offer": item.is_offer}
-
 
 @app.get("/models/{model_name}")
 async def get_model(model_name: ModelName):
