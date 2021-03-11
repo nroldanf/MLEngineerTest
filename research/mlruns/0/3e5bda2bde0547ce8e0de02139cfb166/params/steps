@@ -1,0 +1,1 @@
+[('quasi-constant', DropConstantFeatures(tol=0.92)), ('duplicated', DropDuplicateFeatures()), ('correlation', SmartCorrelatedSelection(selection_method='variance'))]
