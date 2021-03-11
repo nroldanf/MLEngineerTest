@@ -1,5 +1,9 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
+FROM python:3.7
 
-COPY ./app/ /app/
+RUN mkdir /app
+WORKDIR /app
 
+COPY ./app/ .
 RUN pip install -r requirements.txt
+
+CMD [ "gunicorn", "--workers=5", "--threads=1", "app:app"]
