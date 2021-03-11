@@ -4,7 +4,7 @@ Main file for the routes and some logic of the API
 from typing import Optional
 from enum import Enum
 
-import pandas as pd
+import numpy as np
 import mlflow
 import mlflow.sklearn
 
@@ -13,7 +13,6 @@ from fastapi.encoders import jsonable_encoder
 
 from pydantic import BaseModel
 
-clf = mlflow.sklearn.load_model("model/")
 
 feats = ['acousticness', 'danceability', 'duration_ms', 'energy', 'explicit',
        'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'popularity',
@@ -48,10 +47,15 @@ async def guess_artist(item: Item):
     '''
     '''
     print("Inicio")
-    json_item = jsonable_encoder(item)
-    print(json_item)
-    data = pd.DataFrame(json_item, index=[0])
-    print(data)
-    y_pred = clf.predict(data)
+    clf = mlflow.sklearn.load_model("model/")
+
+    # json_item = jsonable_encoder(item)
+    # data = pd.DataFrame(json_item, index=[0])
+    sample = np.array([i for i in Item.values()]).reshape(1, -1)
+    y_pred = clf.predict(sample)
     print(y_pred)
-    return "Exito"
+    del clf
+    del sample
+
+    print(y_pred)
+    return "Exito!"
