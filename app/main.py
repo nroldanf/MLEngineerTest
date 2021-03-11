@@ -13,17 +13,11 @@ from fastapi.encoders import jsonable_encoder
 
 from pydantic import BaseModel
 
-model_path = "models/"
-
 clf = mlflow.pyfunc.load_model("model/")
 
 feats = ['acousticness', 'danceability', 'duration_ms', 'energy', 'explicit',
        'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'popularity',
        'speechiness', 'tempo', 'valence', 'year']
-
-
-print("ESTOY AQUIII")
-print(feats)
 
 app = FastAPI()
 
@@ -53,8 +47,11 @@ def read_root():
 async def guess_artist(item: Item):
     '''
     '''
+    print("Inicio")
     json_item = jsonable_encoder(item)
+    print(json_item)
     data = pd.DataFrame(json_item, index=[0])
+    print(data)
     y_pred = clf.predict(data)
     print(y_pred)
     return "Exito"
