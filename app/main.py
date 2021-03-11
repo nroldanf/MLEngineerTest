@@ -13,7 +13,7 @@ from fastapi.encoders import jsonable_encoder
 
 from pydantic import BaseModel
 
-clf = mlflow.pyfunc.load_model("model/")
+clf = mlflow.sklearn.load_model("model/")
 
 feats = ['acousticness', 'danceability', 'duration_ms', 'energy', 'explicit',
        'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'popularity',
