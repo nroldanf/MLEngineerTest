@@ -51,7 +51,7 @@ async def guess_artist(item: Item):
 
     # json_item = jsonable_encoder(item)
     # data = pd.DataFrame(json_item, index=[0])
-    sample = np.array([i for i in Item.values()]).reshape(1, -1)
+    sample = np.array([i for i in jsonable_encoder(item).values()]).reshape(1, -1)
     y_pred = clf.predict(sample)
     print(y_pred)
     del clf
