@@ -21,6 +21,10 @@ feats = ['acousticness', 'danceability', 'duration_ms', 'energy', 'explicit',
        'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'popularity',
        'speechiness', 'tempo', 'valence', 'year']
 
+
+print("ESTOY AQUIII")
+print(feats)
+
 app = FastAPI()
 
 class Item(BaseModel):
@@ -45,7 +49,7 @@ class Item(BaseModel):
 def read_root():
     return {"Hello": "World"}
 
-@app.post("/guess_artist")
+@app.post("/guess_artist", status_code=200)
 async def guess_artist(item: Item):
     '''
     '''
