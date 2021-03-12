@@ -9,6 +9,9 @@ import pickle
 
 app = Flask(__name__)
 
+feats = ['acousticness', 'danceability', 'duration_ms', 'energy', 'explicit',
+       'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'popularity',
+       'speechiness', 'tempo', 'valence', 'year']
 
 @app.route("/")
 def default_app():
@@ -20,6 +23,7 @@ def guess_artist():
     '''
     print("Inicio")
     data = request.get_json()
+    print(data)
 
     # clf = mlflow.sklearn.load_model("model/")
     clf = pickle.load(open("model/model.pkl", 'rb'))
@@ -28,7 +32,6 @@ def guess_artist():
     # data = pd.DataFrame(json_item, index=[0])
     sample = np.array([i for i in data.values()]).reshape(1, -1)
     y_pred = clf.predict(sample)
-    print(y_pred)
     del clf
     del sample
 
@@ -38,9 +41,7 @@ def guess_artist():
 if __name__ == '__main__':
     app.run(debug=True)
 
-# feats = ['acousticness', 'danceability', 'duration_ms', 'energy', 'explicit',
-#        'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'popularity',
-#        'speechiness', 'tempo', 'valence', 'year']
+
 
 #**************************************************
 
