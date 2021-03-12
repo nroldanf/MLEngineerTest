@@ -3,10 +3,12 @@ Main file for the routes and some logic of the API
 '''
 from flask import Flask, request
 import numpy as np
-import mlflow
-import mlflow.sklearn
+import pickle
+# import mlflow
+# import mlflow.sklearn
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def default_app():
@@ -19,7 +21,8 @@ def guess_artist():
     print("Inicio")
     data = request.get_json()
 
-    clf = mlflow.sklearn.load_model("model/")
+    # clf = mlflow.sklearn.load_model("model/")
+    clf = pickle.load(open("model.pkl", 'rb'))
 
     # json_item = jsonable_encoder(item)
     # data = pd.DataFrame(json_item, index=[0])
