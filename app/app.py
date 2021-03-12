@@ -2,8 +2,8 @@
 Main file for the routes and some logic of the API
 '''
 from flask import Flask, request
-import numpy as np
-import pickle
+from numpy import array
+from pickle import load
 # import mlflow
 # import mlflow.sklearn
 
@@ -26,12 +26,13 @@ def guess_artist():
     print(data)
 
     # clf = mlflow.sklearn.load_model("model/")
-    clf = pickle.load(open("model/model.pkl", 'rb'))
+    clf = load(open("model/model.pkl", 'rb'))
 
     # json_item = jsonable_encoder(item)
     # data = pd.DataFrame(json_item, index=[0])
-    sample = np.array([i for i in data.values()]).reshape(1, -1)
+    sample = array([i for i in data.values()]).reshape(1, -1)
     y_pred = clf.predict(sample)
+    
     del clf
     del sample
 
