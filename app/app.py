@@ -13,6 +13,8 @@ feats = ['acousticness', 'danceability', 'duration_ms', 'energy', 'explicit',
        'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'popularity',
        'speechiness', 'tempo', 'valence', 'year']
 
+clf = load(open("model/model.pkl", 'rb'))
+
 @app.route("/")
 def default_app():
     return {"Hello": "World"}
@@ -26,8 +28,6 @@ def guess_artist():
     print(data)
 
     # clf = mlflow.sklearn.load_model("model/")
-    clf = load(open("model/model.pkl", 'rb'))
-
     # json_item = jsonable_encoder(item)
     # data = pd.DataFrame(json_item, index=[0])
     sample = array([i for i in data.values()]).reshape(1, -1)
