@@ -6,4 +6,4 @@ WORKDIR /app
 COPY ./app/ .
 RUN pip install -r requirements.txt
 
-CMD [ "gunicorn", "--workers=5", "--threads=1", "app:app", "--preload"]
+CMD [ "gunicorn", "--workers=3", "--threads=1", "app:app", "--preload"]
