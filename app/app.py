@@ -22,7 +22,7 @@ def guess_artist():
     data = request.get_json()
 
     # clf = mlflow.sklearn.load_model("model/")
-    clf = pickle.load(open("model.pkl", 'rb'))
+    clf = pickle.load(open("model/model.pkl", 'rb'))
 
     # json_item = jsonable_encoder(item)
     # data = pd.DataFrame(json_item, index=[0])
